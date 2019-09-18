@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "eslintrc": "^1.0.6",
     "jest": "^24.9.0"
 
   }

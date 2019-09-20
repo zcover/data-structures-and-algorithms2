@@ -9,12 +9,12 @@ Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 const countNumberOfElements = (arr) => {
-  const reduced = arr.reduce(accumulator => {
-    accumulator++;
-    return accumulator;
+  const newNums = arr.reduce(answerSofar => {
+    answerSofar++;
+    return answerSofar;
   }, 0);
-
-  return reduced;
+//   console.log(newNums)
+  return newNums;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -74,11 +74,11 @@ let starWarsData = [{
 }];
 
 const returnNames = (arr) => {
-  const reduced = arr.reduce((accumulator, value) => {
-    accumulator.push(value.name);
-    return accumulator;
+  const reduced = arr.reduce((answerSofar, value) => {
+    answerSofar.push(value.name);
+    return answerSofar;
   }, []);
-
+//   console.log(reduced)
   return reduced;
 };
 
@@ -92,12 +92,14 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   const strArr = str.split('');
-  const reduced = strArr.reduce((accumulator, value) => {
-    accumulator.unshift(value);
-    return accumulator;
+//   console.log(str)
+  const reduced = strArr.reduce((answerSofar, value) => {
+    answerSofar.unshift(value);
+    return answerSofar;
   }, []);
+//   console.log(strArr)
   const reducedStr = reduced.join('');
-
+//   console.log('reduced str', reducedStr)
   return reducedStr;
 };
 
@@ -151,14 +153,14 @@ const characters = [
 ];
 
 const countNumberOfChildren = (arr) => {
-  const reduced = arr.reduce((accumulator, value) => {
+  const reduced = arr.reduce((answerSofar, value) => {
     if (value.children) {
-      accumulator += value.children.length;
+        // console.log(value, 'has: ', value.children.length)
+      answerSofar += value.children.length;
     }
-
-    return accumulator;
+    return answerSofar;
   }, 0);
-
+  console.log('total children: ',reduced)
   return reduced;
 };
 
@@ -171,16 +173,18 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 const calculateAverage = (arr) => {
-  const reduced = arr.reduce((accumulator, value) => {
-    accumulator.count++;
-    accumulator.sum += value;
-    return accumulator;
+    //answerSofar === accumulator
+  const reduced = arr.reduce((answerSofar, value) => {
+    answerSofar.count++;
+    answerSofar.sum += value;
+    return answerSofar;
   }, {
     count: 0,
     sum: 0
   });
+  //dividing the sum by the number of things in array
   const avgReduced = reduced.sum / reduced.count;
-
+  //console.log('the average is: ', avgReduced)
   return avgReduced;
 };
 
@@ -194,10 +198,13 @@ You are welcome to use the provided isPrime function.
 
 const isPrime = (value) => {
   for (let i = 2; i < value; i++) {
+    //   console.log('i is ', i)
     if (value % i === 0) {
       return false;
     }
   }
+  //not sure what Ethan was doing this for, I believe it is raising it up to the nearest whole number?
+  //probably need to come back and ceiling this number (round up)
   return value > 1;
 };
 

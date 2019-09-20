@@ -9,8 +9,9 @@ For example, oddValues([1,2,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const oddValues = (arr) => {
-  const filterArr = arr.filter(el => {
-    return el % 2 === 1;
+  const filterArr = arr.filter(elementToModify => {
+    //   console.log(elementToModify)
+    return elementToModify % 2 === 1;
   });
 
   return filterArr;
@@ -28,12 +29,13 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 
 const filterStringsWithVowels = (arr) => {
-  const filterArr = arr.filter(el => {
-    const regex = /[aiueo]/;
+  const filterArr = arr.filter(element => {
+    const regex = /[aeiou]/;
+    // console.log('result from regex: ',regex.test(element));
+    return regex.test(element);
 
-    return regex.test(el);
   });
-
+//   console.log('filter Arr: ', filterArr)
   return filterArr;
 };
 
@@ -48,6 +50,7 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 
 const notInFirstArray = (forbiddenValues, arr) => {
   const filterArr = arr.filter(el => {
+      //returning things that do not have forbiddenValues
     return !forbiddenValues.includes(el);
   });
 
@@ -94,8 +97,8 @@ const snorlaxData = {
 };
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
-  const filterArr = arr.filter(el => {
-    return el.baseStat > minBaseStat;
+  const filterArr = arr.filter(stats => {
+    return stats.baseStat > minBaseStat;
   });
 
   return filterArr;
@@ -110,8 +113,8 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 ------------------------------------------------------------------------------------------------ */
 
 const getStatName = (arr, minBaseStat) => {
-  const filterArr = getBaseStatGreaterThan(arr, minBaseStat).map(el => {
-    return el.stat.name;
+  const filterArr = getBaseStatGreaterThan(arr, minBaseStat).map(stats => {
+    return stats.stat.name;
   });
 
   return filterArr;
@@ -167,12 +170,14 @@ const characters = [
 ];
 
 const getCharactersWithoutChildren = (arr) => {
-  const filterArr = arr.filter(el => {
-    return !(el.children && el.children.length > 0);
+  const filterArr = arr.filter(person => {
+      //return only things with children
+    return !(person.children && person.children.length > 0);
   });
 
   return filterArr;
 };
+console.log('I mob programmed with the class and got a lot of help specifically from Ethan')
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal

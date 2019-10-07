@@ -9,12 +9,12 @@ For example, oddValues([1,2,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const oddValues = (arr) => {
-  const filterArr = arr.filter(elementToModify => {
-    //   console.log(elementToModify)
-    return elementToModify % 2 === 1;
-  });
+  // const filterArr = arr.filter(elementToModify => {
+  //   //   console.log(elementToModify)
+  //   return elementToModify % 2 === 1;
+  // });
 
-  return filterArr;
+  // return filterArr;
 };
 
 /* ------------------------------------------------------------------------------------------------

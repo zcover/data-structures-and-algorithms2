@@ -9,12 +9,20 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 ------------------------------------------------------------------------------------------------ */
 
 const toTitleCase = (arr) => {
+  const finalArray = [];
   // Solution code here...
-  let newArr = [];
-  arr.forEach(value => {
-      let thisVal = value.charAt(0)
-      console.log(thisVal)
-  });return newArr
+  arr.forEach(element => {
+    // console.log('element: ',element)
+    let firstLetterCapitalized = element.charAt(0).toUpperCase()
+    // console.log('first letter is: ', firstLetterCapitalized)
+    let finalizedElement = element.replace(element.charAt(0), firstLetterCapitalized)
+    // console.log('element is now: ', finalizedElement)
+    finalArray.push(finalizedElement)
+    // console.log('pushed ', finalizedElement, ' into finalArray: ', finalArray)
+    // return finalArray
+    
+  });
+  return finalArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -160,7 +168,7 @@ Run your tests from the console: jest challenge-14.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', () => {
+describe('Testing challenge 1', () => {
   test('It should convert each word to title case', () => {
     const words = ['apple', 'banana', 'MacGyver'];
     expect(toTitleCase(words)).toStrictEqual(['Apple','Banana','MacGyver']);

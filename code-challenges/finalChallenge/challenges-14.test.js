@@ -98,6 +98,7 @@ let starWarsData = [{
 
 let biggerThanLuke = (arr) => {
   // Solution code here...
+  console.log('to string: ', starWarsData.toString())
 };
 
 /* ------------------------------------------------------------------------------------------------

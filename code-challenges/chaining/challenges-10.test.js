@@ -12,8 +12,17 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
 const count = (target, input) => {
-  // Solution code here...
+  let counted = 0;
+  input.forEach(bananas => {
+    bananas.forEach(apples => {
+      if(apples === target){
+        counted ++;
+      }
+    })
+  })
+  return counted;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -27,6 +36,13 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 
 const totalSum = (input) => {
   // Solution code here...
+  let sum = 0;
+  input.forEach(banana => {
+    banana.forEach(peeledbanana => {
+      sum += peeledbanana;
+    });
+  });
+  return sum
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -43,8 +59,23 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
-};
+  const finalArray = input.map(eachArray => {
+    // console.log(eachArray)
+    const numsDivisibleByFive = eachArray.reduce((accumulator, number) => {
+      // console.log(accumulator)
+      if (number % 5 === 0 && typeof number !== 'string') { //this verifies that the number is an integer
+        accumulator.push(Math.pow(2, number)); //Math.pow(power of, originalValue)
+        // console.log(accumulator)
+      }
+      return accumulator
+    }, []);
+    // console.log(numsDivisibleByFive)
+    return numsDivisibleByFive;
+  })
+  // console.log(finalArray)
+  return finalArray
 
+};
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
@@ -109,6 +140,20 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  // console.log(data)
+  let maleAndFemaleArr = []
+  data.forEach(character => {
+    if(character.gender === 'male' || character.gender === 'female'){
+      maleAndFemaleArr.push(character.name)
+    }
+    // else{
+    // console.log(character.name, ' did not identify.')
+    // }
+  })
+  // console.log(maleAndFemaleArr)
+  maleAndFemaleArr = maleAndFemaleArr.join(' and ')
+  // console.log(maleAndFemaleArr)
+  return maleAndFemaleArr
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -117,9 +162,42 @@ CHALLENGE 5
 Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the shortest character.
 ------------------------------------------------------------------------------------------------ */
 
+
+let shortestPersonAward
+
 let findShortest = (data) => {
   // Solution code here...
+  data.forEach(character => {
+    // console.log(character)
+    if(shortestPersonAward === undefined){
+      // console.log('shortest Person not defined')
+
+      // console.log('sending character data into helper: ', character.name)
+      shortestPersonAward = character
+
+    }else{
+      // console.log('shortest Person Defined')
+      sortHelperFunction(character)
+
+    }
+  });
+  return shortestPersonAward.name
 };
+
+const sortHelperFunction = function(character){
+  // console.log('inside helper')
+  // console.log(character)
+  const characterHeight = parseInt(character.height)
+  if(characterHeight < parseInt(shortestPersonAward.height)){
+    shortestPersonAward = character
+    // console.log('new shortie!\n', shortestPersonAward.name, '\n height: \n', shortestPersonAward.height)
+    return shortestPersonAward
+  }else{
+    // console.log('current shortest is: \n', shortestPersonAward.name,'\n height: \n', shortestPersonAward.height)
+    return shortestPersonAward
+
+  }
+}
 
 /* ------------------------------------------------------------------------------------------------
 TESTS

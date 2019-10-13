@@ -12,6 +12,11 @@ For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and
 
 const forLoopTwoToThe = (arr) => {
   // Solution code here...
+  let newArr = [];
+  for( let value of arr){
+    newArr.push(2 ** value);
+  }
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -22,6 +27,12 @@ Write a function named forEachTwoToThe that produces the same output as your for
 
 const forEachTwoToThe = (arr) => {
   // Solution code here...
+  let newArr = [];
+  arr.forEach(value => {
+    newArr.push(2 ** value)
+    // console.log(newArr);
+  })
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -32,7 +43,11 @@ Write a function named mapTwoToThe that produces the same output as your forLoop
 
 const mapTwoToThe = (arr) => {
   // Solution code here...
-};
+  let newArr = arr.map(value => {
+    return 2 ** value;
+  })
+  return newArr;
+}; 
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -46,7 +61,11 @@ For example: charCode(['h','i']) returns [104, 105].
 
 const charCode = (arr) => {
   // Solution code here...
-};
+    let newArr = arr.map(charValue => {
+      return charValue.charCodeAt()
+    })
+    return newArr;
+  };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -60,6 +79,16 @@ For example: evenOdd([1,2,3]) returns ['odd','even','odd'].
 
 const evenOdd = (arr) => {
   // Solution code here...
+  let newArr = arr.map(value => {
+    if (typeof(value) !== 'number') {
+      return 'N/A';
+    } else if (value % 2 === 0){
+      return 'even'
+    } else {
+      return 'odd'
+    }
+  })
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -106,6 +135,14 @@ const snorlaxAbilities = {
 
 const extractAbilities = (arr) => {
   // Solution code here...
+  const narrowedArr = arr[0]
+  let abilityNameArray = arr.map(abilities => {
+    // console.log(abilities)
+    return abilities.ability.name
+
+  })
+  // console.log(abilityNameArray)
+  return abilityNameArray
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -153,6 +190,25 @@ const snorlaxStats = {
 
 const extractStats = (arr) => {
   // Solution code here...
+  let statsArray = arr.map(thisPokemonStats => {
+    let effortStat = thisPokemonStats.effort
+    effortStat = parseInt(effortStat)
+
+    let baseStat = thisPokemonStats.baseStat
+    baseStat = parseInt(baseStat)
+
+    const baseStatTotal = effortStat + baseStat;
+    // console.log(baseStatTotal)
+    // console.log(thisPokemonStats)
+    const statName = thisPokemonStats.stat.name
+
+    return {"name":statName, "total":baseStatTotal}
+
+    // return thisPokemonStats.
+  })
+  // console.log(statsArray)
+  return statsArray
+
 };
 
 /* ------------------------------------------------------------------------------------------------

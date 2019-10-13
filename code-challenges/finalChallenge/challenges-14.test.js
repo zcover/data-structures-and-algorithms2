@@ -98,7 +98,24 @@ let starWarsData = [{
 
 let biggerThanLuke = (arr) => {
   // Solution code here...
-  console.log('to string: ', starWarsData.toString())
+  let ifConditionalArray = [];
+  let lukemassString = starWarsData[0].mass
+  let lukeMass = parseInt(lukemassString)
+  console.log('luke mass is: ', lukeMass)
+  arr.forEach(person => {
+    // console.log('currently on: ', person.name, '\n mass is: ', person.mass)
+    let charMass = parseInt(person.mass)
+    if(charMass > lukeMass){
+      // console.log(person.name,' made it past the check, has mass of: ',charMass)
+      ifConditionalArray.push(person.name)
+      console.log('first Array now has: ', ifConditionalArray)
+    }
+    return ifConditionalArray
+  });
+  let biggerThanLukeArray = ifConditionalArray.join(" - ")
+  console.log('this is finalArray: ', biggerThanLukeArray)
+  
+  return biggerThanLukeArray
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -178,7 +195,7 @@ describe('Testing challenge 1', () => {
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should return only characters that are bigger than Luke', () => {
     expect(biggerThanLuke(starWarsData)).toStrictEqual('Darth Vader - Pex Kylar');
     expect(biggerThanLuke([])).toStrictEqual('');

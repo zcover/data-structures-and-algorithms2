@@ -101,19 +101,19 @@ let biggerThanLuke = (arr) => {
   let ifConditionalArray = [];
   let lukemassString = starWarsData[0].mass
   let lukeMass = parseInt(lukemassString)
-  console.log('luke mass is: ', lukeMass)
+  // console.log('luke mass is: ', lukeMass)
   arr.forEach(person => {
     // console.log('currently on: ', person.name, '\n mass is: ', person.mass)
     let charMass = parseInt(person.mass)
     if(charMass > lukeMass){
       // console.log(person.name,' made it past the check, has mass of: ',charMass)
       ifConditionalArray.push(person.name)
-      console.log('first Array now has: ', ifConditionalArray)
+      // console.log('first Array now has: ', ifConditionalArray)
     }
     return ifConditionalArray
   });
   let biggerThanLukeArray = ifConditionalArray.join(" - ")
-  console.log('this is finalArray: ', biggerThanLukeArray)
+  // console.log('this is finalArray: ', biggerThanLukeArray)
   
   return biggerThanLukeArray
 };
@@ -134,6 +134,19 @@ This data could be sorted by name or price.
 
 const sortBy = (property, arr) => {
   // Solution code here...
+  let sortProperty = property
+  console.log('sorting by: ', sortProperty)
+  arr.sort((a, b) => {
+    if(a.sortProperty > b.sortProperty){
+      return 1;
+    }else if(a.sortProperty < b.sortProperty){
+      return -1;
+    }else{
+      return 0;
+    }
+  })
+  console.log(arr)
+  return arr
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -202,7 +215,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should sort items by a price', () => {
 
     expect(sortBy('price', [

@@ -2,29 +2,19 @@
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
-
 Write a function named toTitleCase that takes in an array of strings and returns an array of strings with the first character in upper case and the rest as is.
 
 For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyver'].
 ------------------------------------------------------------------------------------------------ */
 
 const toTitleCase = (arr) => {
-  const finalArray = [];
-  // Solution code here...
-  arr.forEach(element => {
-    // console.log('element: ',element)
-    let firstLetterCapitalized = element.charAt(0).toUpperCase()
-    // console.log('first letter is: ', firstLetterCapitalized)
-    let finalizedElement = element.replace(element.charAt(0), firstLetterCapitalized)
-    // console.log('element is now: ', finalizedElement)
-    finalArray.push(finalizedElement)
-    // console.log('pushed ', finalizedElement, ' into finalArray: ', finalArray)
-    // return finalArray
-    
-  });
-  return finalArray;
+  //takes in an array of strings
+  const upper = arr.map(value => {
+    const upperCase = value[0].toUpperCase()+ value.slice(1);
+    return upperCase;
+  })
+  return upper;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -97,25 +87,12 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  // Solution code here...
-  let ifConditionalArray = [];
-  let lukemassString = starWarsData[0].mass
-  let lukeMass = parseInt(lukemassString)
-  // console.log('luke mass is: ', lukeMass)
-  arr.forEach(person => {
-    // console.log('currently on: ', person.name, '\n mass is: ', person.mass)
-    let charMass = parseInt(person.mass)
-    if(charMass > lukeMass){
-      // console.log(person.name,' made it past the check, has mass of: ',charMass)
-      ifConditionalArray.push(person.name)
-      // console.log('first Array now has: ', ifConditionalArray)
-    }
-    return ifConditionalArray
-  });
-  let biggerThanLukeArray = ifConditionalArray.join(" - ")
-  // console.log('this is finalArray: ', biggerThanLukeArray)
-  
-  return biggerThanLukeArray
+  const namesArray = [];
+  arr.map(person => {
+    if (parseInt(person.mass) > 77)
+      namesArray.push(person.name);
+  })
+  return namesArray.join(' - ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,19 +111,11 @@ This data could be sorted by name or price.
 
 const sortBy = (property, arr) => {
   // Solution code here...
-  let sortProperty = property
-  console.log('sorting by: ', sortProperty)
-  arr.sort((a, b) => {
-    if(a.sortProperty > b.sortProperty){
-      return 1;
-    }else if(a.sortProperty < b.sortProperty){
-      return -1;
-    }else{
-      return 0;
-    }
+  let answer = arr.sort(function(a, b) {
+    if(a[property] < b[property]) return -1 ;
+    if(a[property] > b[property]) return +1 ;
   })
-  console.log(arr)
-  return arr
+  return answer;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -162,7 +131,8 @@ https://secure.com returns true because the URL is secure
 https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
-// Solution code here...
+  const regex = /https:\/\//gm;
+  return regex.test(url);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -244,7 +214,7 @@ describe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should check if url is https', () => {
 
     expect(isSecure('http://www.insecure.com')).toBe(false);
